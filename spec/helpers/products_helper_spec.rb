@@ -28,7 +28,7 @@ RSpec.describe Spree::ProductsHelper do
     end
 
     let(:products) do
-      travel_to(Time.local(1990)) do
+      travel_to(Time.gm(1990)) do
         create_list(:product, 2)
       end
     end
@@ -49,7 +49,7 @@ RSpec.describe Spree::ProductsHelper do
     context 'when products are updated' do
       before do
         load_products
-        products.first.update(updated_at: Time.local(1992))
+        Spree::Product.first.touch(time: Time.gm(1992))
       end
 
       it { is_expected.to eq('en/USD/spree/products/all--bf21a9e8fbc5a3846fb05b4fa0859e0917b2202f-19920101000000-2') }
@@ -59,7 +59,7 @@ RSpec.describe Spree::ProductsHelper do
       let(:products) { nil }
 
       it 'uses the current time ' do
-        travel_to(Time.local(1991)) do
+        travel_to(Time.gm(1991)) do
           load_products
           expect(subject).to eq('en/USD/spree/products/all--bf21a9e8fbc5a3846fb05b4fa0859e0917b2202f-19910101-0')
         end
