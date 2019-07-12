@@ -13,7 +13,7 @@ RSpec.describe Spree::ProductsHelper do
       # Normally provided by Spree::Core::ControllerHelpers::Search
       def build_searcher(params)
         Spree::Config.searcher_class.new(params).tap do |searcher|
-          searcher.current_user = FactoryGirl.create(:user)
+          searcher.current_user = FactoryBot.create(:user)
           searcher.pricing_options = current_pricing_options
         end
       end
