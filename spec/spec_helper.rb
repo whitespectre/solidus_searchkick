@@ -1,18 +1,3 @@
-require 'codeclimate-test-reporter'
-CodeClimate::TestReporter.start
-
-# Run Coverage report
-require 'simplecov'
-SimpleCov.start do
-  add_filter 'spec/dummy'
-  add_group 'Controllers', 'app/controllers'
-  add_group 'Helpers', 'app/helpers'
-  add_group 'Mailers', 'app/mailers'
-  add_group 'Models', 'app/models'
-  add_group 'Views', 'app/views'
-  add_group 'Libraries', 'lib'
-end
-
 # Configure Rails Environment
 ENV['RAILS_ENV'] = 'test'
 
@@ -37,7 +22,7 @@ require 'spree/testing_support/url_helpers'
 require 'solidus_searchkick/factories'
 
 RSpec.configure do |config|
-  config.include FactoryGirl::Syntax::Methods
+  config.include FactoryBot::Syntax::Methods
   config.include Devise::TestHelpers, type: :controller
   # Infer an example group's spec type from the file location.
   config.infer_spec_type_from_file_location!

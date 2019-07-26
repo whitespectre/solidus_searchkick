@@ -1,6 +1,4 @@
-[![Build Status](https://travis-ci.org/elevatorup/solidus_searchkick.svg?branch=master)](https://travis-ci.org/elevatorup/solidus_searchkick)
-[![Code Climate](https://codeclimate.com/github/elevatorup/solidus_searchkick/badges/gpa.svg)](https://codeclimate.com/github/elevatorup/solidus_searchkick)
-[![Test Coverage](https://codeclimate.com/github/elevatorup/solidus_searchkick/badges/coverage.svg)](https://codeclimate.com/github/elevatorup/solidus_searchkick/coverage)
+[![CircleCI](https://circleci.com/gh/solidusio-contrib/solidus_searchkick.svg?style=svg)](https://circleci.com/gh/solidusio-contrib/solidus_searchkick)
 
 Solidus + Searchkick
 ====================
