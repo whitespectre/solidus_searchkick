@@ -25,14 +25,14 @@ module Spree
 
       def self.price_filter
         conds = [
-          [Spree.t(:under_price, price: format_price(1)),   { range: { price: { lt: 1 } } }],
+          [I18n.t('spree.under_price', price: format_price(1)), { range: { price: { lt: 1 } } }],
           ["#{format_price(1)} - #{format_price(5)}",       { range: { price: { from: 1, to: 5 } } }],
           ["#{format_price(5)} - #{format_price(10)}",      { range: { price: { from: 5, to: 10 } } }],
           ["#{format_price(10)} - #{format_price(15)}",     { range: { price: { from: 10, to: 15 } } }],
           ["#{format_price(15)} - #{format_price(25)}",     { range: { price: { from: 15, to: 25 } } }],
           ["#{format_price(25)} - #{format_price(50)}",     { range: { price: { from: 25, to: 50 } } }],
           ["#{format_price(50)} - #{format_price(100)}",    { range: { price: { from: 50, to: 100 } } }],
-          [Spree.t(:over_price, price: format_price(100)),  { range: { price: { gt: 100 } } }]
+          [I18n.t('spree.over_price', price: format_price(100)), { range: { price: { gt: 100 } } }]
         ]
         {
           name:   'Price',

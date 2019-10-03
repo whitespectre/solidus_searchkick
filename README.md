@@ -100,7 +100,7 @@ The `conds` for `SearchkickFilters` are similar to the `ProductFilters` in the d
   ```
   conds = [
     ...
-    [Spree.t(:under_price, price: format_price(1)),   { range: { price: { lt: 1 } } }],
+    [I18n.t('spree.under_price', price: format_price(1)),   { range: { price: { lt: 1 } } }],
     ...
   ]
   ```
