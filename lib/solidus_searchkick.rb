@@ -1,4 +1,10 @@
-require 'spree_core'
+# frozen_string_literal: true
+
+require 'searchkick'
+require 'solidus_core'
+require 'solidus_support'
+
+require 'solidus_searchkick/version'
 require 'solidus_searchkick/engine'
 require 'solidus_searchkick/railtie' if defined?(Rails)
 
