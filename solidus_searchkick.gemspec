@@ -1,37 +1,37 @@
-# encoding: UTF-8
-require File.expand_path("../lib/solidus_searchkick/version", __FILE__)
+# frozen_string_literal: true
+
+$:.push File.expand_path('lib', __dir__)
+require 'solidus_searchkick/version'
 
 Gem::Specification.new do |s|
-  s.platform    = Gem::Platform::RUBY
-  s.name        = 'solidus_searchkick'
-  s.version     = SolidusSearchkick::VERSION
-  s.licenses    = ['MIT']
-  s.summary     = 'Add searchkick to Solidus'
+  s.name = 'solidus_searchkick'
+  s.version = SolidusSearchkick::VERSION
+  s.summary = 'Add searchkick to Solidus'
   s.description = 'Filters, suggests, autocompletes, sortings, searches'
-  s.required_ruby_version = '>= 2.0.0'
+  s.license = 'MIT'
 
-  s.author    = ['Jim Smith']
-  s.email     = ['jim@jimsmithdesign.com']
-  s.homepage  = 'https://github.com/elevatorup/solidus_searchkick'
+  s.author = 'Jim Smith'
+  s.email = 'jim@jimsmithdesign.com'
+  s.homepage = 'https://github.com/solidusio-contrib/solidus_searchkick'
 
-  s.files       = `git ls-files`.split("\n")
-  s.test_files  = `git ls-files -- {test,spec,features}/*`.split("\n")
-  s.require_path = 'lib'
-  s.requirements << 'none'
+  if s.respond_to?(:metadata)
+    s.metadata["homepage_uri"] = s.homepage if s.homepage
+    s.metadata["source_code_uri"] = s.homepage if s.homepage
+  end
 
-  s.add_runtime_dependency     'solidus', '>= 1.4.0'
-  s.add_runtime_dependency     'searchkick', '>= 1.2'
+  s.required_ruby_version = '~> 2.4'
 
-  s.add_development_dependency 'capybara', '~> 2.4'
-  s.add_development_dependency 'coffee-rails'
-  s.add_development_dependency 'database_cleaner'
-  s.add_development_dependency 'factory_bot', '~> 4.5'
-  s.add_development_dependency 'ffaker'
-  s.add_development_dependency 'rspec-rails',  '~> 3.1'
-  s.add_development_dependency 'sass-rails', '~> 5.0'
-  s.add_development_dependency 'selenium-webdriver'
-  s.add_development_dependency 'sqlite3'
-  s.add_development_dependency 'pry'
-  s.add_development_dependency 'better_errors'
-  s.add_development_dependency 'binding_of_caller'
+  s.files = Dir.chdir(File.expand_path(__dir__)) do
+    `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
+  end
+  s.test_files = Dir['spec/**/*']
+  s.bindir = "exe"
+  s.executables = s.files.grep(%r{^exe/}) { |f| File.basename(f) }
+  s.require_paths = ["lib"]
+
+  s.add_dependency 'searchkick', '>= 1.2'
+  s.add_dependency 'solidus_core', ['>= 2.0.0', '< 3']
+  s.add_dependency 'solidus_support', '~> 0.4.0'
+
+  s.add_development_dependency 'solidus_dev_support'
 end

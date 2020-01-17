@@ -1,7 +1,13 @@
+# frozen_string_literal: true
+
+require 'spree/core'
+
 module SolidusSearchkick
   class Engine < Rails::Engine
-    require 'spree/core'
+    include SolidusSupport::EngineExtensions::Decorators
+
     isolate_namespace ::Spree
+
     engine_name 'solidus_searchkick'
 
     # use rspec for tests
@@ -23,14 +29,5 @@ module SolidusSearchkick
         end
       end
     end
-
-    def self.activate
-      Dir.glob(File.join(File.dirname(__FILE__), '../../app/**/*_decorator*.rb')) do |c|
-        Rails.configuration.cache_classes ? require(c) : load(c)
-      end
-      ::Spree::Config.searcher_class = ::Spree::Search::Searchkick
-    end
-
-    config.to_prepare &method(:activate).to_proc
   end
 end
