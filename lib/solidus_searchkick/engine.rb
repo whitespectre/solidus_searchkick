@@ -28,6 +28,15 @@ module SolidusSearchkick
           )
         end
       end
+
+      unless ::Spree::Taxon.try(:searchkick_options)
+        ::Spree::Taxon.class_eval do
+          searchkick(
+            index_name: "#{Rails.application.class.parent_name.parameterize.underscore}_spree_taxons_#{Rails.env}",
+            word_start: [:name]
+          )
+        end
+      end
     end
   end
 end
