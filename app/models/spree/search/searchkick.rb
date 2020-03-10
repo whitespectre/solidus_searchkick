@@ -22,6 +22,46 @@ module Spree::Search
       @products = get_base_search
     end
 
+    def query
+      @properties[:query]
+    end
+
+    def search
+      @properties[:search]
+    end
+
+    def filters
+      @properties[:filters]
+    end
+
+    def fields
+      @properties[:fields]
+    end
+
+    def searchkick_options
+      @properties[:searchkick_options]
+    end
+
+    def taxon
+      @properties[:taxon]
+    end
+
+    def keywords
+      @properties[:keywords]
+    end
+
+    def include_images
+      @properties[:include_images]
+    end
+
+    def per_page
+      @properties[:per_page]
+    end
+
+    def page
+      @properties[:page]
+    end
+
     protected
 
     def get_base_search
