@@ -1,3 +1,6 @@
+# 0.4.1
+Added Taxon index
+
 # 0.3.4
 Updated cache_key_for_products (thanks @Sinetheta)
 
