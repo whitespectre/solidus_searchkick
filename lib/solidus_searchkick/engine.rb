@@ -23,7 +23,7 @@ module SolidusSearchkick
       unless ::Spree::Product.try(:searchkick_options)
         ::Spree::Product.class_eval do
           searchkick(
-            index_name: "#{Rails.application.class.parent_name.parameterize.underscore}_spree_products_#{Rails.env}",
+            index_name: "#{Rails.application.class.module_parent_name.parameterize.underscore}_spree_products_#{Rails.env}",
             word_start: [:name]
           )
         end
@@ -32,7 +32,7 @@ module SolidusSearchkick
       unless ::Spree::Taxon.try(:searchkick_options)
         ::Spree::Taxon.class_eval do
           searchkick(
-            index_name: "#{Rails.application.class.parent_name.parameterize.underscore}_spree_taxons_#{Rails.env}",
+            index_name: "#{Rails.application.class.module_parent_name.parameterize.underscore}_spree_taxons_#{Rails.env}",
             word_start: [:name]
           )
         end
