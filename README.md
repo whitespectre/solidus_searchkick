@@ -54,6 +54,7 @@ In this example, the `unless Spree::product.try(:searchkick_options)` conditiona
 Adding this condition prevents Rails from throwing an error when reloading the product decorator and trying to add searchkick multiple times.
 
 #### Index Name
+
 In version 0.3.1, the index_name option was added. It defaults to
 ```
 "#{Rails.application.class.parent_name.parameterize.underscore}_spree_products_#{Rails.env}"
@@ -67,7 +68,7 @@ If you need are upgrading from a version of SolidusSearchkick prior to version 0
 Search Parameters
 -----------------
 
-By default, only the `Spree::Product` class is indexed. The following items are indexed by default:
+By default, `Spree::Product` & `Spree::Taxon` classes are indexed. The following items are indexed by default:
 * name
 * description
 * available? (indexed as `active`)
@@ -237,13 +238,6 @@ First bundle your dependencies, then run `rake`. `rake` will default to building
 ```shell
 bundle
 bundle exec rake
-```
-
-When testing your applications integration with this extension you may use it's factories.
-Simply add this require statement to your spec_helper:
-
-```ruby
-require 'solidus_searchkick/factories'
 ```
 
 Copyright (c) 2016 Jim Smith, released under the New BSD License

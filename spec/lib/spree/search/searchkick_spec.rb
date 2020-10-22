@@ -1,4 +1,5 @@
 require 'spec_helper'
+
 describe Spree::Search::Searchkick do
   let(:product) { create(:product) }
 
