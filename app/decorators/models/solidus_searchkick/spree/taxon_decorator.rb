@@ -6,13 +6,11 @@ module SolidusSearchkick
       end
 
       def search_data
-        json = {
+        {
           name: name,
           description: description,
           active: available?
         }
-
-        json
       end
 
       def available?

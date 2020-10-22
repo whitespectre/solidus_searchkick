@@ -6,7 +6,7 @@ module SolidusSearchkick
       end
 
       def search_data
-        json = {
+        {
           name: name,
           description: description,
           active: available?,
@@ -17,8 +17,6 @@ module SolidusSearchkick
           taxon_ids: taxon_and_ancestors.map(&:id),
           taxon_names: taxon_and_ancestors.map(&:name)
         }
-
-        json
       end
 
       def taxon_and_ancestors
