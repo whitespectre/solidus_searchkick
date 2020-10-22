@@ -18,8 +18,8 @@ module SolidusSearchkick
     # Run after initialization, allows us to process product_decorator from application before this
     config.after_initialize do
       if ::SolidusSearchkick.autosetup
-        ::SolidusSearchkick.setup_class(::Spree::Product)
-        ::SolidusSearchkick.setup_class(::Spree::Taxon)
+        ::SolidusSearchkick.setup_index(::Spree::Product)
+        ::SolidusSearchkick.setup_index(::Spree::Taxon)
       end
     end
   end

@@ -18,7 +18,7 @@ module SolidusSearchkick
   # Check if searchkick_index have been set by the application using this gem
   # If they have, then do not initialize searchkick on the model
   # If they have not, then set the defaults
-  def self.setup_class(klass, custom = {})
+  def self.setup_index(klass, custom = {})
     return if klass.respond_to?(:searchkick_index)
     klass.searchkick({ index_name: to_index_name(klass), word_start: [:name] }.deep_merge!(custom))
   end
