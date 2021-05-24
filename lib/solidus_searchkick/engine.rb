@@ -15,6 +15,18 @@ module SolidusSearchkick
       g.test_framework :rspec
     end
 
+    initializer 'solidus_searchkick.setup_decorators' do |app|
+      if Rails.autoloaders.respond_to?(:main) && Rails.autoloaders.main.respond_to?(:ignore)
+        Rails.autoloaders.main.ignore(Dir.glob(File.join(File.dirname(__FILE__), '../../app/decorators')))
+      end
+    end
+
+    config.to_prepare do
+      Dir.glob(File.join(File.dirname(__FILE__), '../../app/decorators/**/*.rb')).sort.each do |file|
+        require_dependency file
+      end
+    end
+
     # Run after initialization, allows us to process product_decorator from application before this
     config.after_initialize do
       if ::SolidusSearchkick.autosetup
