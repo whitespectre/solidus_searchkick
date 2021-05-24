@@ -22,6 +22,8 @@ module SolidusSearchkick
     end
 
     config.to_prepare do
+      ActionView::Base.send :include, SolidusSearchkick::Helpers::FormHelper
+
       Dir.glob(File.join(File.dirname(__FILE__), '../../app/decorators/**/*.rb')).sort.each do |file|
         require_dependency file
       end
