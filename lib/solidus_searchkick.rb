@@ -6,10 +6,29 @@ require 'solidus_support'
 require 'solidus_searchkick/version'
 require 'solidus_searchkick/engine'
 require 'solidus_searchkick/railtie'
+require 'solidus_searchkick/index_factory'
 
 module SolidusSearchkick
   mattr_accessor :autosetup
   self.autosetup = true
+
+  mattr_accessor :locales
+
+  module MultiLocaleReindex
+    module ClassMethods
+      def reindex(*args, &block)
+        SolidusSearchkick.each_locale { super }
+      end
+    end
+
+    def self.prepended(klass)
+      klass.singleton_class.prepend(ClassMethods)
+    end
+
+    def reindex(*args, &block)
+      SolidusSearchkick.each_locale { super }
+    end
+  end
 
   def self.root
     File.expand_path('../..',__FILE__)
@@ -20,11 +39,12 @@ module SolidusSearchkick
   # If they have not, then set the defaults
   def self.setup_index(klass, custom = {})
     return if klass.respond_to?(:searchkick_index)
-    klass.searchkick({ index_name: to_index_name(klass), word_start: [:name] }.deep_merge!(custom))
+
+    klass.searchkick(IndexFactory.call(klass, locales).deep_merge!(custom))
+    klass.prepend(MultiLocaleReindex) if locales
   end
 
-  def self.to_index_name(klass)
-    app_name = Rails.application.class.module_parent_name.parameterize.underscore
-    "#{app_name}_#{klass.model_name.plural}_#{Rails.env}"
+  def self.each_locale(&block)
+    locales.keys.each { |locale| I18n.with_locale(locale, &block) }
   end
 end
